@@ -1,0 +1,185 @@
+---
+const sections = [
+  { id: 'start', label: 'Start here', count: '01' },
+  { id: 'projects', label: 'Selected projects', count: '02' },
+  { id: 'learning', label: 'Learn dump', count: '03' },
+  { id: 'about', label: 'About', count: '04' },
+];
+
+const searchItems = [
+  { type: 'Page', title: 'Start here', text: 'Introduction, focus, skills and availability', href: '#start' },
+  { type: 'Project', title: 'Portfolio knowledge base', text: 'Astro, content design and accessible search', href: '#portfolio-project' },
+  { type: 'Project', title: 'Your next case study', text: 'A ready-to-edit project case study template', href: '#next-project' },
+  { type: 'Note', title: 'How I structure technical notes', text: 'A lightweight system for turning practice into reusable knowledge', href: '#note-system' },
+  { type: 'Note', title: 'Building for clarity', text: 'Small interface decisions that make technical work easier to understand', href: '#clarity' },
+  { type: 'Page', title: 'About', text: 'Background, principles and current direction', href: '#about' },
+];
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Vignesh V.'s projects, technical notes, and learning archive." />
+    <meta name="generator" content={Astro.generator} />
+    <title>Vignesh V. — Engineer & Learner</title>
+    <script is:inline>
+      const savedTheme = localStorage.getItem('theme');
+      const preferred = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.dataset.theme = savedTheme || preferred;
+    </script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#start" aria-label="Vignesh home"><span class="brand-mark">v/</span><span>vignesh.dev</span></a>
+      <nav class="toplinks" aria-label="Primary navigation"><a href="#projects">Projects</a><a href="#learning">Learn dump</a><a href="#about">About</a></nav>
+      <div class="top-actions">
+        <button class="search-trigger" id="searchTrigger" type="button" aria-label="Search this site">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z" /></svg><span>Search</span><kbd>⌘ K</kbd>
+        </button>
+        <span class="updated"><i></i>Updated Sep 2026</span>
+        <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle color theme">
+          <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+        </button>
+        <button class="mobile-menu icon-button" id="menuToggle" type="button" aria-label="Open navigation">☰</button>
+      </div>
+    </header>
+
+    <aside class="sidebar" id="sidebar">
+      <div class="side-intro"><span class="eyebrow">// FIELD NOTES</span><p>Projects, experiments, and the useful things I learn along the way.</p></div>
+      <nav aria-label="Section navigation">
+        <span class="nav-heading">CONTENTS</span>
+        {sections.map((section) => <a href={`#${section.id}`} data-nav={section.id}><span>{section.label}</span><small>{section.count}</small></a>)}
+      </nav>
+      <div class="side-status"><span class="status-dot"></span><div><strong>Learning in public</strong><small>One note at a time</small></div></div>
+    </aside>
+
+    <main>
+      <section class="hero" id="start">
+        <div class="breadcrumb"><span>portfolio</span><b>/</b><span>start-here</span></div>
+        <p class="kicker">// SOFTWARE ENGINEER · CURIOUS BUILDER</p>
+        <h1>I build, break down,<br />and <em>document</em> what I learn.</h1>
+        <p class="lede">I’m Vignesh. This is my working archive: selected projects, technical notes, and the thinking behind the things I make.</p>
+        <div class="hero-actions"><a class="primary-button" href="#projects">Explore my work <span>↘</span></a><a class="text-link" href="#learning">Read the learn dump <span>→</span></a></div>
+        <div class="quick-facts" aria-label="Quick facts"><div><span>FOCUS</span><strong>Product engineering</strong></div><div><span>CURRENTLY</span><strong>Learning in public</strong></div><div><span>OPEN TO</span><strong>Interesting conversations</strong></div></div>
+      </section>
+
+      <section class="content-section" id="projects">
+        <div class="section-heading"><div><span class="kicker">// 01 — SELECTED PROJECTS</span><h2>Work, with the thinking included.</h2></div><p>Case studies that cover the goal, constraints, decisions, and lessons—not just the final screenshot.</p></div>
+        <div class="project-grid">
+          <article class="project-card featured" id="portfolio-project" data-searchable>
+            <div class="project-top"><span class="project-number">01</span><span class="badge live"><i></i>Live project</span></div>
+            <div class="project-visual" aria-hidden="true"><div class="mini-sidebar"><i></i><i></i><i></i><i></i></div><div class="mini-content"><span></span><b></b><b></b><div><i></i><i></i></div></div></div>
+            <div class="project-copy"><p class="meta">ASTRO · CONTENT DESIGN · ACCESSIBILITY</p><h3>Portfolio knowledge base</h3><p>A docs-inspired portfolio designed to make projects and learning notes easy to browse, search, and maintain.</p><a href="#note-system">Read the build notes <span>↗</span></a></div>
+          </article>
+          <article class="project-card placeholder" id="next-project" data-searchable>
+            <div class="project-top"><span class="project-number">02</span><span class="badge">Case study slot</span></div>
+            <div class="project-copy"><p class="meta">YOUR STACK · YOUR OUTCOME</p><h3>Your next case study</h3><p>Replace this card with a real project: the problem, your role, key choices, measurable outcome, and what you would improve.</p><span class="quiet-link">Ready for your project details <span>→</span></span></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section" id="learning">
+        <div class="section-heading"><div><span class="kicker">// 02 — LEARN DUMP</span><h2>Notes from the workbench.</h2></div><p>Short, useful write-ups from things I have studied, built, debugged, or finally understood.</p></div>
+        <div class="note-list">
+          <article id="note-system" data-searchable><span class="note-index">01</span><div><div class="note-meta"><span>PROCESS</span><time>6 min read</time></div><h3>How I structure technical notes</h3><p>A simple format for turning rough discoveries into knowledge I can find and reuse.</p></div><span class="arrow">↗</span></article>
+          <article id="clarity" data-searchable><span class="note-index">02</span><div><div class="note-meta"><span>DESIGN</span><time>4 min read</time></div><h3>Building for clarity</h3><p>What navigation, hierarchy, and small interface details teach us about usable software.</p></div><span class="arrow">↗</span></article>
+          <article data-searchable><span class="note-index">03</span><div><div class="note-meta"><span>NEXT NOTE</span><time>Coming soon</time></div><h3>The next thing I learn</h3><p>This archive grows with the work. New notes will live here as short, searchable references.</p></div><span class="arrow muted">→</span></article>
+        </div>
+      </section>
+
+      <section class="about-section" id="about">
+        <div class="about-label"><span class="kicker">// 03 — ABOUT</span><span class="about-number">03</span></div>
+        <div class="about-copy"><h2>I care about useful software and clear explanations.</h2><p>This portfolio is both proof of work and a record of progress. I use it to show how I approach problems, what I am exploring, and how my thinking changes over time.</p><p>Good engineering is easier to trust when the reasoning is visible. That is why every project here makes room for tradeoffs, dead ends, and lessons—not only polished results.</p><div class="principles"><span><b>01</b>Learn by building</span><span><b>02</b>Write for recall</span><span><b>03</b>Ship with care</span></div></div>
+      </section>
+
+      <footer><div><span class="brand-mark">v/</span><p>Built as a living document.<br />Last updated September 2026.</p></div><a href="#start">Back to top ↑</a></footer>
+    </main>
+
+    <dialog id="searchDialog" aria-label="Search portfolio">
+      <div class="search-box"><div class="search-input-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z" /></svg><input id="searchInput" type="search" placeholder="Search projects, notes, and pages…" autocomplete="off" /><kbd>ESC</kbd></div><div class="search-label">RESULTS</div><div class="search-results" id="searchResults"></div><div class="search-empty" id="searchEmpty">No matching notes or projects.</div><div class="search-footer"><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span><b>vignesh search</b></div></div>
+    </dialog>
+
+    <script define:vars={{ searchItems }}>
+      const root = document.documentElement;
+      const themeToggle = document.querySelector('#themeToggle');
+      const menuToggle = document.querySelector('#menuToggle');
+      const sidebar = document.querySelector('#sidebar');
+      const dialog = document.querySelector('#searchDialog');
+      const searchTrigger = document.querySelector('#searchTrigger');
+      const input = document.querySelector('#searchInput');
+      const results = document.querySelector('#searchResults');
+      const empty = document.querySelector('#searchEmpty');
+      let activeIndex = 0;
+      let visibleItems = searchItems;
+      themeToggle.addEventListener('click', () => { root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark'; localStorage.setItem('theme', root.dataset.theme); });
+      menuToggle.addEventListener('click', () => sidebar.classList.toggle('open'));
+      sidebar.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => sidebar.classList.remove('open')));
+      const renderResults = () => {
+        const query = input.value.trim().toLowerCase();
+        visibleItems = searchItems.filter((item) => `${item.title} ${item.text} ${item.type}`.toLowerCase().includes(query));
+        activeIndex = Math.min(activeIndex, Math.max(visibleItems.length - 1, 0));
+        results.innerHTML = visibleItems.map((item, index) => `<a href="${item.href}" class="search-result ${index === activeIndex ? 'active' : ''}" data-index="${index}"><span class="result-type">${item.type}</span><div><strong>${item.title}</strong><small>${item.text}</small></div><span>↗</span></a>`).join('');
+        empty.hidden = visibleItems.length > 0;
+        results.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => dialog.close()));
+      };
+      const openSearch = () => { dialog.showModal(); input.value = ''; activeIndex = 0; renderResults(); setTimeout(() => input.focus(), 30); };
+      searchTrigger.addEventListener('click', openSearch);
+      dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+      input.addEventListener('input', renderResults);
+      document.addEventListener('keydown', (event) => {
+        if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); openSearch(); }
+        if (!dialog.open) return;
+        if (event.key === 'ArrowDown') { event.preventDefault(); activeIndex = (activeIndex + 1) % Math.max(visibleItems.length, 1); renderResults(); }
+        if (event.key === 'ArrowUp') { event.preventDefault(); activeIndex = (activeIndex - 1 + Math.max(visibleItems.length, 1)) % Math.max(visibleItems.length, 1); renderResults(); }
+        if (event.key === 'Enter' && visibleItems[activeIndex]) { event.preventDefault(); location.hash = visibleItems[activeIndex].href; dialog.close(); }
+      });
+      const sectionsEls = [...document.querySelectorAll('main section[id]')];
+      const navLinks = [...document.querySelectorAll('[data-nav]')];
+      const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) navLinks.forEach((link) => link.classList.toggle('active', link.dataset.nav === entry.target.id)); }), { rootMargin: '-20% 0px -70%' });
+      sectionsEls.forEach((section) => observer.observe(section));
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
+  :root { --bg:#090b0c; --panel:#101315; --panel-2:#15191b; --text:#f2f1ed; --muted:#92999a; --faint:#606768; --line:#252b2d; --accent:#c8ff62; --accent-ink:#172000; --header:rgba(9,11,12,.88); --shadow:0 24px 80px rgba(0,0,0,.45); color-scheme:dark; }
+  :root[data-theme='light'] { --bg:#f7f7f3; --panel:#fff; --panel-2:#eff0ea; --text:#171a18; --muted:#626966; --faint:#8a918e; --line:#dcded7; --accent:#75a900; --accent-ink:#fff; --header:rgba(247,247,243,.9); --shadow:0 24px 80px rgba(27,35,22,.16); color-scheme:light; }
+  * { box-sizing:border-box; } html { scroll-behavior:smooth; scroll-padding-top:90px; background:var(--bg); } body { margin:0; background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-size:16px; line-height:1.6; transition:background .2s,color .2s; } button,a { font:inherit; } a { color:inherit; text-decoration:none; } button { color:inherit; }
+  .topbar { position:fixed; inset:0 0 auto; height:68px; z-index:20; display:flex; align-items:center; border-bottom:1px solid var(--line); background:var(--header); backdrop-filter:blur(16px); }
+  .brand { width:260px; height:100%; padding:0 28px; display:flex; gap:12px; align-items:center; border-right:1px solid var(--line); font-weight:600; letter-spacing:-.02em; }
+  .brand-mark { display:grid; place-items:center; width:28px; height:28px; background:var(--accent); color:var(--accent-ink); border-radius:3px; font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:600; }
+  .toplinks { display:flex; gap:28px; padding-left:30px; color:var(--muted); font-size:14px; } .toplinks a:hover { color:var(--text); }
+  .top-actions { margin-left:auto; display:flex; align-items:center; gap:10px; padding:0 20px; }
+  .search-trigger { height:36px; min-width:194px; display:flex; align-items:center; gap:8px; padding:0 8px 0 11px; border:1px solid var(--line); border-radius:5px; background:var(--panel); color:var(--muted); cursor:pointer; }
+  .search-trigger svg,.search-input-wrap svg { width:15px; fill:none; stroke:currentColor; stroke-width:1.7; } .search-trigger span { text-align:left; flex:1; font-size:13px; }
+  kbd { border:1px solid var(--line); border-radius:3px; background:var(--panel-2); color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:10px; padding:2px 5px; }
+  .updated { display:flex; align-items:center; gap:7px; color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:11px; white-space:nowrap; }
+  .updated i,.status-dot,.badge.live i { width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 3px color-mix(in srgb,var(--accent),transparent 80%); }
+  .icon-button { width:36px; height:36px; display:grid; place-items:center; border:1px solid var(--line); background:var(--panel); border-radius:5px; cursor:pointer; } .icon-button svg { width:16px; fill:none; stroke:currentColor; stroke-width:1.6; } [data-theme='dark'] .sun,[data-theme='light'] .moon { display:none; } .mobile-menu { display:none; font-size:16px; }
+  .sidebar { position:fixed; top:68px; bottom:0; left:0; width:260px; z-index:10; display:flex; flex-direction:column; padding:35px 18px 24px; border-right:1px solid var(--line); background:var(--bg); }
+  .side-intro { padding:0 10px 30px; border-bottom:1px solid var(--line); } .eyebrow,.kicker,.nav-heading,.meta,.note-meta { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.08em; } .eyebrow,.kicker { color:var(--accent); }
+  .side-intro p { color:var(--muted); font-size:13px; line-height:1.55; margin:12px 0 0; } .sidebar nav { padding-top:28px; } .nav-heading { display:block; padding:0 10px 10px; color:var(--faint); }
+  .sidebar nav a { display:flex; justify-content:space-between; align-items:center; padding:9px 10px; border-radius:4px; color:var(--muted); font-size:14px; } .sidebar nav a small { color:var(--faint); font:10px 'JetBrains Mono',monospace; } .sidebar nav a:hover,.sidebar nav a.active { color:var(--text); background:var(--panel); } .sidebar nav a.active::before { content:''; width:2px; height:16px; position:absolute; left:18px; background:var(--accent); }
+  .side-status { margin-top:auto; display:flex; gap:11px; align-items:flex-start; padding:16px 10px 0; border-top:1px solid var(--line); } .side-status .status-dot { margin-top:7px; flex:none; } .side-status div { display:flex; flex-direction:column; } .side-status strong { font-size:12px; font-weight:500; } .side-status small { color:var(--faint); font-size:11px; }
+  main { margin-left:260px; padding-top:68px; overflow:hidden; } main section,footer { max-width:1140px; margin:0 auto; padding-left:72px; padding-right:72px; }
+  .hero { min-height:calc(100vh - 68px); display:flex; flex-direction:column; justify-content:center; position:relative; padding-top:86px; padding-bottom:64px; } .hero::after { content:'{ }'; position:absolute; right:3%; top:18%; color:var(--panel-2); font:700 220px/1 'JetBrains Mono',monospace; z-index:-1; } .breadcrumb { position:absolute; top:28px; left:72px; display:flex; gap:8px; color:var(--faint); font:11px 'JetBrains Mono',monospace; } .breadcrumb b { color:var(--line); } .hero .kicker { margin-bottom:18px; }
+  h1,h2,h3,p { margin-top:0; } h1 { max-width:850px; margin-bottom:24px; font-size:clamp(44px,6vw,78px); line-height:1.04; letter-spacing:-.055em; font-weight:500; } h1 em { color:var(--accent); font-style:normal; } .lede { max-width:650px; color:var(--muted); font-size:19px; line-height:1.65; }
+  .hero-actions { display:flex; gap:28px; align-items:center; margin-top:16px; } .primary-button { display:inline-flex; align-items:center; gap:22px; padding:12px 16px; background:var(--accent); color:var(--accent-ink); border-radius:4px; font-size:14px; font-weight:600; } .text-link { color:var(--muted); font-size:14px; } .text-link:hover { color:var(--text); }
+  .quick-facts { margin-top:80px; padding-top:24px; display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); } .quick-facts div { display:flex; flex-direction:column; gap:4px; } .quick-facts span { color:var(--faint); font:10px 'JetBrains Mono',monospace; letter-spacing:.08em; } .quick-facts strong { font-size:13px; font-weight:500; }
+  .content-section { padding-top:110px; padding-bottom:110px; border-top:1px solid var(--line); } .section-heading { display:grid; grid-template-columns:1fr 330px; gap:50px; align-items:end; margin-bottom:46px; } h2 { margin:10px 0 0; font-size:clamp(32px,4vw,50px); line-height:1.1; letter-spacing:-.04em; font-weight:500; } .section-heading>p { margin:0; color:var(--muted); font-size:15px; }
+  .project-grid { display:grid; grid-template-columns:1.35fr 1fr; gap:16px; } .project-card { min-height:500px; display:flex; flex-direction:column; padding:24px; border:1px solid var(--line); background:var(--panel); border-radius:6px; overflow:hidden; } .project-top { display:flex; justify-content:space-between; align-items:center; } .project-number { color:var(--faint); font:11px 'JetBrains Mono',monospace; }
+  .badge { display:flex; align-items:center; gap:7px; padding:4px 8px; border:1px solid var(--line); border-radius:99px; color:var(--muted); font:10px 'JetBrains Mono',monospace; text-transform:uppercase; letter-spacing:.05em; }
+  .project-visual { height:210px; margin:28px 0 30px; display:flex; border:1px solid var(--line); border-radius:5px; background:var(--bg); transform:rotate(-1deg); box-shadow:var(--shadow); overflow:hidden; } .mini-sidebar { width:25%; padding:20px 12px; border-right:1px solid var(--line); } .mini-sidebar i { display:block; width:75%; height:5px; margin-bottom:14px; background:var(--line); } .mini-sidebar i:first-child { width:42%; background:var(--accent); } .mini-content { flex:1; padding:38px 32px; } .mini-content>span { display:block; width:20%; height:5px; margin-bottom:18px; background:var(--accent); } .mini-content>b { display:block; width:78%; height:14px; margin-bottom:9px; background:var(--text); opacity:.85; } .mini-content>b:nth-child(3) { width:58%; } .mini-content div { display:flex; gap:8px; margin-top:28px; } .mini-content i { width:34%; height:45px; border:1px solid var(--line); }
+  .project-copy { margin-top:auto; } .meta { color:var(--accent); font-size:9px; } .project-copy h3 { margin:8px 0 10px; font-size:25px; letter-spacing:-.025em; font-weight:500; } .project-copy p:not(.meta) { color:var(--muted); font-size:14px; max-width:540px; } .project-copy a,.quiet-link { color:var(--text); font-size:13px; } .project-copy a span,.quiet-link span { color:var(--accent); margin-left:4px; } .placeholder { background:linear-gradient(145deg,var(--panel),var(--panel-2)); } .placeholder::before { content:'//'; margin:auto; color:var(--line); font:110px 'JetBrains Mono',monospace; } .quiet-link { color:var(--faint); }
+  .note-list { border-top:1px solid var(--line); } .note-list article { display:grid; grid-template-columns:52px 1fr 40px; gap:20px; align-items:center; padding:28px 10px; border-bottom:1px solid var(--line); transition:background .15s,padding .15s; } .note-list article:hover { padding-left:18px; padding-right:18px; background:var(--panel); } .note-index { color:var(--faint); font:11px 'JetBrains Mono',monospace; } .note-meta { display:flex; gap:12px; margin-bottom:6px; color:var(--accent); font-size:9px; } .note-meta time { color:var(--faint); } .note-list h3 { margin:0 0 4px; font-size:20px; font-weight:500; } .note-list p { margin:0; color:var(--muted); font-size:14px; } .arrow { color:var(--accent); font-size:18px; } .arrow.muted { color:var(--faint); }
+  .about-section { padding-top:110px; padding-bottom:110px; border-top:1px solid var(--line); display:grid; grid-template-columns:220px 1fr; gap:50px; } .about-label { display:flex; flex-direction:column; justify-content:space-between; } .about-number { color:var(--panel-2); font:120px/1 'JetBrains Mono',monospace; } .about-copy { max-width:720px; } .about-copy h2 { margin-top:0; } .about-copy>p { color:var(--muted); font-size:17px; line-height:1.8; } .principles { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:40px; } .principles span { display:flex; flex-direction:column; gap:12px; padding:18px; border:1px solid var(--line); font-size:13px; } .principles b { color:var(--accent); font:10px 'JetBrains Mono',monospace; }
+  footer { min-height:170px; padding-top:45px; padding-bottom:45px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); } footer>div { display:flex; gap:15px; align-items:center; } footer p { margin:0; color:var(--muted); font-size:12px; line-height:1.5; } footer>a { color:var(--muted); font-size:13px; }
+  dialog { width:min(650px,calc(100% - 30px)); padding:0; border:1px solid var(--line); border-radius:7px; background:var(--panel); color:var(--text); box-shadow:var(--shadow); } dialog::backdrop { background:rgba(0,0,0,.67); backdrop-filter:blur(4px); } .search-input-wrap { display:flex; align-items:center; gap:12px; padding:17px; border-bottom:1px solid var(--line); } .search-input-wrap svg { width:19px; } .search-input-wrap input { flex:1; border:0; outline:0; background:transparent; color:var(--text); font-size:16px; } .search-input-wrap input::placeholder { color:var(--faint); } .search-label { padding:14px 17px 8px; color:var(--faint); font:9px 'JetBrains Mono',monospace; letter-spacing:.1em; } .search-results { padding:0 8px 8px; max-height:370px; overflow:auto; } .search-result { display:grid; grid-template-columns:58px 1fr 20px; gap:12px; align-items:center; padding:11px; border-radius:4px; } .search-result.active { background:var(--panel-2); } .result-type { color:var(--accent); font:9px 'JetBrains Mono',monospace; text-transform:uppercase; } .search-result div { display:flex; flex-direction:column; } .search-result strong { font-size:14px; font-weight:500; } .search-result small { color:var(--muted); font-size:12px; } .search-empty { padding:28px; text-align:center; color:var(--muted); font-size:14px; } .search-footer { display:flex; align-items:center; gap:15px; padding:10px 14px; border-top:1px solid var(--line); color:var(--faint); font-size:10px; } .search-footer span { display:flex; align-items:center; gap:4px; } .search-footer b { margin-left:auto; font:10px 'JetBrains Mono',monospace; color:var(--faint); }
+  @media(max-width:900px){ .brand{width:auto;border:0;padding:0 16px}.brand span:last-child{display:none}.toplinks,.updated{display:none}.top-actions{padding-right:12px}.search-trigger{min-width:36px;width:36px;padding:0;justify-content:center}.search-trigger span,.search-trigger kbd{display:none}.mobile-menu{display:grid}.sidebar{transform:translateX(-100%);transition:transform .2s;box-shadow:var(--shadow)}.sidebar.open{transform:translateX(0)}main{margin-left:0}main section,footer{padding-left:28px;padding-right:28px}.breadcrumb{left:28px}.hero{min-height:auto;padding-top:150px}.hero::after{font-size:130px;top:25%}.quick-facts{margin-top:60px}.section-heading{grid-template-columns:1fr}.section-heading>p{max-width:500px}.project-grid{grid-template-columns:1fr}.project-card{min-height:450px}.about-section{grid-template-columns:1fr}.about-label{display:none}}
+  @media(max-width:580px){h1{font-size:42px}.lede{font-size:17px}.hero-actions{align-items:flex-start;flex-direction:column;gap:16px}.quick-facts{grid-template-columns:1fr;gap:18px}.content-section{padding-top:80px;padding-bottom:80px}.project-card{padding:18px;min-height:430px}.project-visual{height:170px}.section-heading{margin-bottom:30px}.note-list article{grid-template-columns:36px 1fr}.note-list .arrow{display:none}.about-section{padding-top:80px;padding-bottom:80px}.principles{grid-template-columns:1fr}.search-footer span{display:none}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
