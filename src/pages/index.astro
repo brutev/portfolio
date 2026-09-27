@@ -29,7 +29,7 @@ const searchItems = [
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content="Vignesh V.'s projects, technical notes, and learning archive." />
     <meta name="generator" content={Astro.generator} />
-    <title>Vignesh V. — Engineer & Learner</title>
+    <title>Vignesh V. | Engineer and Learner</title>
     <script is:inline>
       const savedTheme = localStorage.getItem('theme');
       const preferred = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
@@ -85,7 +85,7 @@ const searchItems = [
       </section>
 
       <section class="content-section journal-section" id="journal">
-        <div class="section-heading"><div><span class="kicker">// DAILY JOURNAL</span><h2>Small updates. Visible progress.</h2></div><p>What I built, learned, solved, and will do next—dated and linked to evidence as the work grows.</p></div>
+        <div class="section-heading"><div><span class="kicker">// DAILY JOURNAL</span><h2>Small updates. Visible progress.</h2></div><p>What I built, learned, solved, and will do next. Each update is dated and linked to evidence as the work grows.</p></div>
         <div class="journal-list">
           {journal.map((entry) => (
             <article>
@@ -103,7 +103,7 @@ const searchItems = [
       </section>
 
       <section class="content-section" id="projects">
-        <div class="section-heading"><div><span class="kicker">// 01 — SELECTED PROJECTS</span><h2>Work, with the thinking included.</h2></div><p>Case studies that cover the goal, constraints, decisions, and lessons—not just the final screenshot.</p></div>
+        <div class="section-heading"><div><span class="kicker">// 01 / SELECTED PROJECTS</span><h2>Work, with the thinking included.</h2></div><p>Case studies that cover the goal, constraints, decisions, and lessons. They show more than the final screenshot.</p></div>
         <div class="project-grid">
           <article class="project-card featured" id="portfolio-project" data-searchable>
             <div class="project-top"><span class="project-number">01</span><span class="badge live"><i></i>Live project</span></div>
@@ -118,7 +118,7 @@ const searchItems = [
       </section>
 
       <section class="content-section" id="learning">
-        <div class="section-heading"><div><span class="kicker">// 02 — LEARN DUMP</span><h2>Notes from the workbench.</h2></div><p>Short, useful write-ups from things I have studied, built, debugged, or finally understood.</p></div>
+        <div class="section-heading"><div><span class="kicker">// 02 / LEARN DUMP</span><h2>Notes from the workbench.</h2></div><p>Short, useful write-ups from things I have studied, built, debugged, or finally understood.</p></div>
         <div class="note-list">
           <article id="note-system" data-searchable><span class="note-index">01</span><div><div class="note-meta"><span>PROCESS</span><time>6 min read</time></div><h3>How I structure technical notes</h3><p>A simple format for turning rough discoveries into knowledge I can find and reuse.</p></div><span class="arrow">↗</span></article>
           <article id="clarity" data-searchable><span class="note-index">02</span><div><div class="note-meta"><span>DESIGN</span><time>4 min read</time></div><h3>Building for clarity</h3><p>What navigation, hierarchy, and small interface details teach us about usable software.</p></div><span class="arrow">↗</span></article>
@@ -127,8 +127,8 @@ const searchItems = [
       </section>
 
       <section class="about-section" id="about">
-        <div class="about-label"><span class="kicker">// 03 — ABOUT</span><span class="about-number">03</span></div>
-        <div class="about-copy"><h2>I care about useful software and clear explanations.</h2><p>This portfolio is both proof of work and a record of progress. I use it to show how I approach problems, what I am exploring, and how my thinking changes over time.</p><p>Good engineering is easier to trust when the reasoning is visible. That is why every project here makes room for tradeoffs, dead ends, and lessons—not only polished results.</p><div class="principles"><span><b>01</b>Learn by building</span><span><b>02</b>Write for recall</span><span><b>03</b>Ship with care</span></div></div>
+        <div class="about-label"><span class="kicker">// 03 / ABOUT</span><span class="about-number">03</span></div>
+        <div class="about-copy"><h2>I care about useful software and clear explanations.</h2><p>This portfolio is both proof of work and a record of progress. I use it to show how I approach problems, what I am exploring, and how my thinking changes over time.</p><p>Good engineering is easier to trust when the reasoning is visible. That is why every project here makes room for tradeoffs, dead ends, lessons, and polished results.</p><div class="principles"><span><b>01</b>Learn by building</span><span><b>02</b>Write for recall</span><span><b>03</b>Ship with care</span></div></div>
       </section>
 
       <footer><div><span class="brand-mark">v/</span><p>Built as a living document.<br />Last updated September 2026.</p></div><a href="#start">Back to top ↑</a></footer>

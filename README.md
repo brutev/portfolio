@@ -1,4 +1,4 @@
-# Vignesh — Portfolio & Learn Dump
+# Vignesh: Portfolio and Learn Dump
 
 A living record of what I build, learn, debug, and improve as I grow toward AI and backend engineering roles.
 
@@ -33,10 +33,10 @@ Current status: **planning the first implementation**.
 
 Journal entries record four things:
 
-- **Built** — the concrete work completed
-- **Learned** — a technical insight worth retaining
-- **Solved** — a problem, bug, or decision
-- **Next** — the next verifiable step
+- **Built:** the concrete work completed
+- **Learned:** a technical insight worth retaining
+- **Solved:** a problem, bug, or decision
+- **Next:** the next verifiable step
 
 Entries live in [`src/data/journal.json`](src/data/journal.json). Each update can be committed to GitHub and automatically deployed once hosting is connected.
 
@@ -80,10 +80,10 @@ Daily update → GitHub commit → automatic build → live portfolio
 
 ## Project status labels
 
-- **Completed** — built and available as evidence
-- **Building** — active implementation is underway
-- **Learning** — currently studying or practising
-- **Planned** — discussed or intended, but not started
+- **Completed:** built and available as evidence
+- **Building:** active implementation is underway
+- **Learning:** currently studying or practising
+- **Planned:** discussed or intended, but not started
 
 ## Repository
 
