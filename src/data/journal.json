@@ -1,0 +1,12 @@
+[
+  {
+    "date": "2026-09-26",
+    "displayDate": "SEP 26, 2026",
+    "project": "Portfolio Learn Dump",
+    "built": "Created a searchable portfolio and added a daily engineering journal.",
+    "learned": "Small, dated updates make progress easier to verify than broad skill claims.",
+    "solved": "Separated completed work, active work, and planned projects so the portfolio stays honest.",
+    "next": "Create the FastAPI foundation for the AI résumé parser.",
+    "tags": ["Astro", "Portfolio", "Learning in public"]
+  }
+]
