@@ -1,0 +1,87 @@
+---
+const today = new Date().toISOString().slice(0, 10);
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Journal Editor | Vignesh</title>
+    <script is:inline>
+      const savedTheme = localStorage.getItem('theme');
+      document.documentElement.dataset.theme = savedTheme || 'dark';
+    </script>
+  </head>
+  <body>
+    <header><a href="/">v/ <span>portfolio</span></a><span>// PRIVATE JOURNAL EDITOR</span></header>
+    <main>
+      <section class="intro">
+        <p class="label">// NEW DAILY ENTRY</p>
+        <h1>What changed today?<span aria-hidden="true"></span></h1>
+        <p>Submit one clear update. The API commits it to GitHub, then Cloudflare rebuilds the portfolio.</p>
+      </section>
+
+      <form id="journalForm">
+        <div class="field compact"><label for="date">DATE</label><input id="date" name="date" type="date" value={today} required /></div>
+        <div class="field"><label for="project">PROJECT</label><input id="project" name="project" placeholder="AI-powered résumé parser" required maxlength="100" /></div>
+        <div class="field"><label for="built">BUILT</label><textarea id="built" name="built" placeholder="What did you complete?" required maxlength="800"></textarea></div>
+        <div class="field"><label for="learned">LEARNED</label><textarea id="learned" name="learned" placeholder="What became clearer today?" required maxlength="800"></textarea></div>
+        <div class="field"><label for="solved">SOLVED</label><textarea id="solved" name="solved" placeholder="What problem or decision did you handle?" required maxlength="800"></textarea></div>
+        <div class="field"><label for="next">NEXT</label><textarea id="next" name="next" placeholder="What is the next verifiable step?" required maxlength="800"></textarea></div>
+        <div class="field"><label for="tags">TAGS</label><input id="tags" name="tags" placeholder="FastAPI, Python, LLM" /></div>
+        <div class="field"><label for="adminKey">ADMIN KEY</label><input id="adminKey" name="adminKey" type="password" placeholder="Cloudflare secret" required autocomplete="current-password" /></div>
+        <div class="actions"><button type="submit">Publish journal entry <span>↗</span></button><a href="/#journal">View journal</a></div>
+        <div id="formStatus" role="status" aria-live="polite"></div>
+      </form>
+    </main>
+
+    <script>
+      const form = document.querySelector('#journalForm');
+      const status = document.querySelector('#formStatus');
+      const submit = form.querySelector('button[type="submit"]');
+      const keyInput = document.querySelector('#adminKey');
+      keyInput.value = sessionStorage.getItem('journalAdminKey') || '';
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        submit.disabled = true;
+        submit.textContent = 'Publishing...';
+        status.className = '';
+        status.textContent = 'Creating a GitHub commit...';
+
+        const data = new FormData(form);
+        const key = String(data.get('adminKey') || '');
+        sessionStorage.setItem('journalAdminKey', key);
+        const payload = Object.fromEntries(data.entries());
+        delete payload.adminKey;
+
+        try {
+          const response = await fetch('/api/journal', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json', authorization: `Bearer ${key}` },
+            body: JSON.stringify(payload),
+          });
+          const result = await response.json();
+          if (!response.ok) throw new Error(result.error || 'Could not publish the entry.');
+          status.className = 'success';
+          status.innerHTML = `${result.message}${result.commitUrl ? ` <a href="${result.commitUrl}" target="_blank" rel="noreferrer">View commit ↗</a>` : ''}`;
+          ['built', 'learned', 'solved', 'next'].forEach((name) => { form.elements[name].value = ''; });
+        } catch (error) {
+          status.className = 'error';
+          status.textContent = error.message;
+        } finally {
+          submit.disabled = false;
+          submit.innerHTML = 'Publish journal entry <span>↗</span>';
+        }
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+  :root{--bg:#090b0c;--panel:#101315;--text:#f2f1ed;--muted:#92999a;--line:#252b2d;--accent:#c8ff62;--ink:#172000;color-scheme:dark}
+  *{box-sizing:border-box}::selection{background:var(--accent);color:var(--ink)}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.6 'JetBrains Mono',monospace}header{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px}header a{color:var(--accent);font-weight:700;text-decoration:none}header a span{color:var(--text);margin-left:10px}main{width:min(860px,calc(100% - 36px));margin:0 auto;padding:70px 0 100px}.label,label{color:var(--accent);font-size:10px;letter-spacing:.09em}.intro h1{margin:8px 0 16px;font-size:clamp(32px,6vw,58px);line-height:1.08;letter-spacing:-.055em;font-weight:500}.intro h1 span{display:inline-block;width:.38em;height:.8em;margin-left:.12em;background:var(--accent);vertical-align:-.04em;animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}.intro>p:last-child{max-width:650px;color:var(--muted)}form{margin-top:48px;border-top:1px solid var(--line)}.field{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:18px 0;border-bottom:1px solid var(--line)}label{padding-top:11px}input,textarea{width:100%;border:1px solid var(--line);border-radius:4px;outline:0;background:var(--panel);color:var(--text);font:14px/1.6 inherit;padding:11px 13px}input:focus,textarea:focus{border-color:var(--accent)}textarea{min-height:100px;resize:vertical}.actions{display:flex;align-items:center;gap:24px;margin-top:28px}button{padding:12px 16px;border:0;border-radius:4px;background:var(--accent);color:var(--ink);font:600 13px 'JetBrains Mono',monospace;cursor:pointer}button:disabled{opacity:.55;cursor:wait}.actions a,#formStatus a{color:var(--muted)}#formStatus{margin-top:20px;min-height:24px;color:var(--muted)}#formStatus.success{color:var(--accent)}#formStatus.error{color:#ff7777}@media(max-width:620px){main{padding-top:45px}.field{grid-template-columns:1fr;gap:7px}label{padding:0}header>span{display:none}}@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>

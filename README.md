@@ -78,6 +78,21 @@ The planned publishing flow is:
 Daily update → GitHub commit → automatic build → live portfolio
 ```
 
+## Journal editor
+
+The private form at `/admin` sends journal entries to a Cloudflare Pages Function. The function updates `src/data/journal.json` through the GitHub API, which starts a new Cloudflare deployment.
+
+Configure these secrets and variables in **Cloudflare Pages → Settings → Variables and Secrets**:
+
+| Name | Type | Purpose |
+| --- | --- | --- |
+| `JOURNAL_ADMIN_TOKEN` | Secret | Private key entered in the journal form |
+| `GITHUB_TOKEN` | Secret | Fine-grained GitHub token with Contents read/write access to this repository |
+| `GITHUB_OWNER` | Variable | `brutev` |
+| `GITHUB_REPO` | Variable | `portfolio` |
+
+Never store either secret in the repository or client-side code.
+
 ## Project status labels
 
 - **Completed:** built and available as evidence
